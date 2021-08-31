@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../../../hoc/Aux';
 import classes from './Note.css'
 
 class Note extends Component{
