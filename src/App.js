@@ -1,4 +1,4 @@
-import Notes from '../src/components/Notes/Notes';
+import Notes from './components/Layout/Main/Notes/Notes';
 import './App.css';
 
 function App() {

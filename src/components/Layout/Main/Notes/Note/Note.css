@@ -1,5 +1,17 @@
-.Note{
+.NoteCard{
     background-color: aqua;
     width: 300px;
     height: 200px;
+}
+.title {
+text-align: center;
+font-weight: bold;
+
+}
+.NoteDetails{
+    margin: 15px;
+    margin-top: 2px;
+}
+.color{
+    color: blue;
 }
