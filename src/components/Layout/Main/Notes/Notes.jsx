@@ -1,29 +1,39 @@
-import React from 'react';
-// import Aux from '../../../../hoc/Auxi';
+import React,{Component} from 'react';
+import Aux from '../../../../hoc/Auxi';
 import Note from './Note/Note';
+import axios from '../../../../axios';
 
-const notes = (props) => {
+class notes extends Component {
 
-
-    return props.notes.map((note, index) => {
-        // console.log(person)
-        return <Note
-            title={note.title}
-            content={note.content}
-            key={note.id}
-        />
-
-    })
-    // return (
-    //     <Aux>
-    //         <div>
-    //             {mynotes}
-    //             {/* <Note title="First Note" content="This is content of first note" />
-    //             <Note title="Second Note" content="Hello from Note app" />
-    //             <Note title="Third Note" content="This is lol" /> */}
-    //         </div>
-    //     </Aux>
-    // );
+state={
+    notes:[],
 }
 
+constructor (props){
+    super(props)
+    axios.get('/notes.json').then(response => {
+        const notes = response.data;
+        this.setState({
+            notes:notes
+        });
+    });
+}
+
+render(){
+    this.setState()
+    
+    let notes = Object.keys(this.state.notes).map(igKey => {
+        return <Note key={igKey} title={this.state.notes[igKey].title} content={this.state.notes[igKey].content} />
+    });
+    // console.log(notes);
+
+return (
+    <Aux>
+        <div class="m-8">
+            {notes}
+        </div>
+    </Aux>
+);
+}
+}
 export default notes

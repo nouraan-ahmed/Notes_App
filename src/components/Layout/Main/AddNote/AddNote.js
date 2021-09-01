@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Editor from '../../../../UI/Editor/Editor';
+import Form from '../../../../UI/Form/Form';
 
 class AddNote extends Component {
     render() {
         return (
-            <div>
-                <Editor/>
+            <div class="flex h-screen mt-28 justify-center">
+                <Form/>
             </div>
         );
     }

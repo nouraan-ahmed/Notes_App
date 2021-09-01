@@ -7,7 +7,10 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'app':"url('/src/images/bg1.jpg')"
-      })
+      }),
+      colors:{
+        primary:"#374151"
+      }
     },
   },
   variants: {
