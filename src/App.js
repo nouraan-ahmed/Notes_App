@@ -1,10 +1,10 @@
-import Notes from './components/Layout/Main/Notes/Notes';
 import './App.css';
+import Layout from './components/Layout';
 
 function App() {
   return (
-    <div className="App">
-      <Notes/>
+    <div class="bg-app bg-cover h-screen m-0 p-0">
+      <Layout/>
     </div>
   );
 }
