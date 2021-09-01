@@ -1,7 +1,106 @@
 import React, { Component } from 'react';
-
+import Favorites from '../Main/Favorites/Favorites';
+import Notes from '../Main/Notes/Notes';
+import AddNote from '../Main/AddNote/AddNote';
 class Navbar extends Component {
+
+    state = {
+        notes: [
+            { id: 'lol1', title: "First Note", content: "This is content of first note", favorite: true },
+            { id: 'ddx1', title: "Second Note", content: "Hello from Note app", favorite: false },
+            { id: 'ed2', title: "Third Note", content: "This is lol", favorite: true }
+
+        ],
+        ActiveButton: 'view',
+
+
+    }
+    ComponentViewer = ''
+    viewHandler = () => {
+        this.setState(
+            {
+                ActiveButton: 'view'
+            }
+        )
+        this.ComponentViewer = <Notes notes={this.state.notes} />
+
+    }
+    favoriteHandler = () => {
+        this.setState(
+            {
+                ActiveButton: 'favorites'
+            }
+        )
+        this.ComponentViewer = <Favorites notes={this.state.notes}></Favorites>
+
+
+
+        return 0;
+    }
+    addNoteHandler = () => {
+        this.setState(
+            {
+                ActiveButton: 'newNote'
+            }
+        )
+        this.ComponentViewer = <AddNote />
+        return 0;
+    }
+    searchHandler = () => {
+        this.setState(
+            {
+                ActiveButton: 'search'
+            }
+        )
+        // this.ComponentViewer = <Notes notes={this.state.notes} />
+        return 0;
+    }
+
+
+
+
+
+
     render() {
+        let view = ''
+        let favorites = ''
+        let newNote = ''
+        let search = ''
+
+        switch (this.state.ActiveButton) {
+            case 'view':
+                view = 'bg-gray-900 text-white'
+                favorites = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                newNote = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                search = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                break;
+            case 'favorites':
+                view = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                favorites = 'bg-gray-900 text-white'
+                newNote = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                search = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                break;
+            case 'newNote':
+                view = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                favorites = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                newNote = 'bg-gray-900 text-white'
+                search = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                break;
+            case 'search':
+                view = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                favorites = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                newNote = 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                search = 'bg-gray-900 text-white'
+                break;
+
+            default:
+                break;
+        }
+
+
+
+
+
         return (
             <div>
                 {/* <!-- This example requires Tailwind CSS v2.0+ --> */}
@@ -42,11 +141,11 @@ class Navbar extends Component {
                                 <div className="hidden sm:block sm:ml-6">
                                     <div className="flex space-x-4">
                                         {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                                        <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">View Notes</a>
+                                        <a href="#" onClick={this.viewHandler} className={view + " text-white px-3 py-2 rounded-md text-sm font-medium"} aria-current="page">View Notes</a>
 
-                                        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Favorites</a>
-
-                                        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">New Note</a>
+                                        <a href="#" onClick={this.favoriteHandler} className={favorites + " px-3 py-2 rounded-md text-sm font-medium"}>Favorites</a>
+ 
+                                        <a href="#" onClick={this.addNoteHandler} className={newNote + " px-3 py-2 rounded-md text-sm font-medium"}>New Note</a>
 
                                     </div>
                                 </div>
@@ -63,7 +162,7 @@ class Navbar extends Component {
                                             <div className="flex space-x-4">
                                                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                                                 <input type="text" name="price" id="price" className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Search Notes" />
-                                                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Search</a>
+                                                <a href="#" className={search + " px-3 py-2 rounded-md text-sm font-medium"} aria-current="page">Search</a>
                                             </div>
                                         </button>
                                     </div>
@@ -97,6 +196,7 @@ class Navbar extends Component {
                     </div>
                 </nav>
 
+                <div> {this.ComponentViewer}</div>
             </div>
         );
     }
