@@ -5,15 +5,8 @@ import AddNote from '../Main/AddNote/AddNote';
 class Navbar extends Component {
 
     state = {
-        notes: [
-            { id: 'lol1', title: "First Note", content: "This is content of first note", favorite: true },
-            { id: 'ddx1', title: "Second Note", content: "Hello from Note app", favorite: false },
-            { id: 'ed2', title: "Third Note", content: "This is lol", favorite: true }
-
-        ],
+        notes: this.props.notes,
         ActiveButton: 'view',
-
-
     }
     ComponentViewer = ''
     viewHandler = () => {
@@ -22,7 +15,8 @@ class Navbar extends Component {
                 ActiveButton: 'view'
             }
         )
-        this.ComponentViewer = <Notes notes={this.state.notes} />
+        this.ComponentViewer = <Notes notes={this.props.notes} />
+        console.log(this.props.notes);
 
     }
     favoriteHandler = () => {
@@ -31,9 +25,9 @@ class Navbar extends Component {
                 ActiveButton: 'favorites'
             }
         )
-        this.ComponentViewer = <Favorites notes={this.state.notes}></Favorites>
+        this.ComponentViewer = <Favorites notes={this.props.notes}></Favorites>
 
-
+        console.log(this.props.notes);
 
         return 0;
     }

@@ -1,21 +1,27 @@
-import React from 'react';
+import React,{Component} from 'react';
 import Note from '../Notes/Note/Note';
-const Favorites = (props) => {
-    return props.notes.map((note) => {
-        // console.log(person)
-        if (note.favorite) {
-            return (
-                    <Note
-                    title={note.title}
-                    content={note.content}
-                    key={note.id}
-            />
-            )
-        }
-        return null;
+import Aux from '../../../../hoc/Auxi';
 
-    })
+class Favorites extends Component  {
+
+    render(){
+    
+        let notes = Object.keys(this.props.notes).map(igKey => {
+            if(this.props.notes[igKey].favorite){
+            return <Note key={igKey} title={this.props.notes[igKey].title} content={this.props.notes[igKey].content} />
+            }
+        });
+        // console.log(notes);
+    
+    return (
+        <Aux>
+            <div class="m-8">
+                {notes}
+            </div>
+        </Aux>
+    );
+    }
+
 }
-
 
 export default Favorites;
