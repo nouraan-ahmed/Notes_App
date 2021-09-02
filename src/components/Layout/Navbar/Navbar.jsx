@@ -7,16 +7,17 @@ class Navbar extends Component {
     state = {
         notes: this.props.notes,
         ActiveButton: 'view',
+        clicked:''
     }
     ComponentViewer = ''
+
     viewHandler = () => {
         this.setState(
             {
                 ActiveButton: 'view'
             }
         )
-        this.ComponentViewer = <Notes notes={this.props.notes} />
-        console.log(this.props.notes);
+        this.ComponentViewer = <Notes active={this.state.ActiveButton} notes={this.props.notes} />
 
     }
     favoriteHandler = () => {
@@ -25,9 +26,7 @@ class Navbar extends Component {
                 ActiveButton: 'favorites'
             }
         )
-        this.ComponentViewer = <Favorites notes={this.props.notes}></Favorites>
-
-        console.log(this.props.notes);
+        this.ComponentViewer = <Favorites notes={this.props.favs}></Favorites>
 
         return 0;
     }
@@ -37,7 +36,7 @@ class Navbar extends Component {
                 ActiveButton: 'newNote'
             }
         )
-        this.ComponentViewer = <AddNote />
+        this.ComponentViewer = <AddNote/>
         return 0;
     }
     searchHandler = () => {
@@ -49,10 +48,6 @@ class Navbar extends Component {
         // this.ComponentViewer = <Notes notes={this.state.notes} />
         return 0;
     }
-
-
-
-
 
 
     render() {
@@ -90,9 +85,6 @@ class Navbar extends Component {
             default:
                 break;
         }
-
-
-
 
 
         return (
@@ -151,8 +143,6 @@ class Navbar extends Component {
                                 <div className="ml-3 relative">
                                     <div>
                                         <button type="button" className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-
-
                                             <div className="flex space-x-4">
                                                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                                                 <input type="text" name="price" id="price" className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Search Notes" />
@@ -189,7 +179,6 @@ class Navbar extends Component {
                         </div>
                     </div>
                 </nav>
-
                 <div> {this.ComponentViewer}</div>
             </div>
         );

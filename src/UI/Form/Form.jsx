@@ -16,6 +16,7 @@ class Form extends Component {
     const note ={
       title:this.state.title,
       content:this.state.content,
+      favorite: false
     }
     axios.post('/notes.json', note)
     .then(response => console.log(response));
